@@ -1,0 +1,44 @@
+<header class="top">
+  <h1>JobTrackr</h1>
+  <p class="summary">{{ total() }} applications, {{ active() }} in progress</p>
+</header>
+
+@if (error()) {
+  <p class="error" role="alert">{{ error() }}</p>
+}
+
+<form class="add" (ngSubmit)="add()" #f="ngForm">
+  <input name="company" [(ngModel)]="draft.company" placeholder="Company" required aria-label="Company">
+  <input name="role" [(ngModel)]="draft.role" placeholder="Role" required aria-label="Role">
+  <input name="location" [(ngModel)]="draft.location" placeholder="Location" aria-label="Location">
+  <input name="link" [(ngModel)]="draft.link" placeholder="Job link" aria-label="Job link">
+  <button type="submit" [disabled]="f.invalid">Add application</button>
+</form>
+
+<main class="board">
+  @for (col of columns; track col.value) {
+    <section class="column" [attr.data-status]="col.value">
+      <h2>{{ col.label }} <span class="count">{{ inColumn(col.value).length }}</span></h2>
+
+      @for (job of inColumn(col.value); track job.id) {
+        <article class="card">
+          <strong>{{ job.role }}</strong>
+          <span>{{ job.company }}</span>
+          @if (job.location) { <small>{{ job.location }}</small> }
+          @if (job.link) { <a [href]="job.link" target="_blank" rel="noopener">Open posting</a> }
+          <div class="actions">
+            <select [ngModel]="job.status" (ngModelChange)="move(job, $event)" [name]="'s' + job.id"
+                    aria-label="Move to column">
+              @for (c of columns; track c.value) {
+                <option [value]="c.value">{{ c.label }}</option>
+              }
+            </select>
+            <button type="button" class="link" (click)="remove(job)">Delete</button>
+          </div>
+        </article>
+      } @empty {
+        <p class="empty">Nothing here yet.</p>
+      }
+    </section>
+  }
+</main>

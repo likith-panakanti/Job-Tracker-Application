@@ -1,0 +1,31 @@
+:host { display: block; min-height: 100vh; background: #f3f5f9; color: #1b2433; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+
+.top { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 28px; background: #1b2433; color: #fff; }
+.top h1 { margin: 0; font-size: 1.5rem; }
+.summary { margin: 0; color: #b8c2d6; }
+
+.error { margin: 16px 28px 0; padding: 10px 14px; background: #fde8e8; color: #8a1f1f; border-radius: 8px; }
+
+.add { display: flex; flex-wrap: wrap; gap: 10px; padding: 20px 28px; }
+.add input { flex: 1 1 160px; padding: 10px 12px; border: 1px solid #cdd5e3; border-radius: 8px; font: inherit; }
+.add button { padding: 10px 18px; border: 0; border-radius: 8px; background: #3652d9; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.add button:disabled { background: #b5bfe9; cursor: not-allowed; }
+
+.board { display: grid; grid-template-columns: repeat(5, minmax(220px, 1fr)); gap: 16px; padding: 0 28px 40px; overflow-x: auto; }
+.column { background: #e8ecf4; border-radius: 12px; padding: 12px; border-top: 4px solid #8a97b3; }
+.column[data-status='APPLIED'] { border-top-color: #3652d9; }
+.column[data-status='INTERVIEW'] { border-top-color: #e0a100; }
+.column[data-status='OFFER'] { border-top-color: #1f9d63; }
+.column[data-status='REJECTED'] { border-top-color: #c24141; }
+.column h2 { margin: 0 0 10px; font-size: 1rem; display: flex; justify-content: space-between; }
+.count { color: #5b6880; font-weight: 500; }
+
+.card { display: flex; flex-direction: column; gap: 4px; background: #fff; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(27, 36, 51, 0.08); }
+.card small { color: #5b6880; }
+.card a { color: #3652d9; font-size: 0.9rem; }
+.actions { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.actions select { padding: 4px 6px; border: 1px solid #cdd5e3; border-radius: 6px; font: inherit; font-size: 0.85rem; }
+.link { background: none; border: 0; color: #a23a3a; cursor: pointer; font: inherit; font-size: 0.85rem; }
+.empty { color: #6b7790; font-size: 0.9rem; margin: 4px 0; }
+
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #e0a100; outline-offset: 2px; }
